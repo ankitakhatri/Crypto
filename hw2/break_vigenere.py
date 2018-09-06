@@ -105,7 +105,7 @@ for keylen in range(3, 11):
     #make an empty list with specified size
     bestlist = best(size)
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    
+
     #try all the permutations of size keylen of the alphabet
     for i in permutations (alphabet, keylen):
 
@@ -130,6 +130,5 @@ for keylen in range(3, 11):
         if score > bestscore:
             bestkey = bestlist[i][1].lower()
             bestscore = score
-
-    print round(bestscore, 2), 'Vigenere Key Length of', keylen, ':"' + bestkey.lower() + '",' , vigDecrypt(bestkey.lower(), ciphertext)
-
+    
+    print 'Score:', round(bestscore, 2), 'Vigenere cipher with key length of', keylen, ':"' + bestkey.lower() + '",' , vigDecrypt(ciphertext, bestkey.lower())
