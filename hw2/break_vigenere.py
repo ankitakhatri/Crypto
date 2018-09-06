@@ -119,11 +119,14 @@ for keylen in range(3, 11):
             score += qgram.score(plaintext[j:j+3])
         bestlist.add((score,''.join(i),plaintext))
 
-
+    #set bestkey from the bestlist
     bestkey = bestlist[0][1].lower()
+    #find plaintext by decrypting
     plaintext = vigDecrypt(bestkey, ciphertext)
+    #find the score of the plaintext
     bestscore = qgram.score(plaintext)
 
+    #iterate through the size of the best list to find the highest scores and store them/print
     for i in range(size):
         plaintext = vigDecrypt(bestlist[i][1], ciphertext)
         score = qgram.score(plaintext)
@@ -131,4 +134,4 @@ for keylen in range(3, 11):
             bestkey = bestlist[i][1].lower()
             bestscore = score
     
-    print 'Score:', round(bestscore, 2), 'Vigenere cipher with key length of', keylen, ':"' + bestkey.lower() + '",' , vigDecrypt(ciphertext, bestkey.lower())
+    print 'Score:', round(bestscore, 2), 'Vigenere cipher with key length of', keylen,bestkey.lower(), ':', vigDecrypt(ciphertext, bestkey.lower())
