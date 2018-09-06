@@ -94,7 +94,7 @@ qgram = ngram_score('quadgrams.txt')
 ciphertext = vigEncrypt('hello world', 'pizza')
 
 #print the cipher text
-print (ctext)
+print (ciphertext)
 
 #set size of the 'best' list to 50
 size = 50
@@ -107,10 +107,10 @@ for keylen in range(3, 11):
     for i in permutations ('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 3):
 
         key = ''.join(i) + 'A'*(keylen-len(i))
-        plaintext = vigDecrypt(key, ctext)
+        plaintext = vigDecrypt(key, ciphertext)
         score = 0
 
-        for j in range(0,len(ctext), keylen):
+        for j in range(0,len(ciphertext), keylen):
             score += qgram.score(plaintext[j:j+3])
         bestlist.add((score,''.join(i),plaintext[:30]))
 
@@ -121,24 +121,24 @@ for keylen in range(3, 11):
             for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
                 key = bestlist[k][1] + c
                 fullkey = key + 'A'*(keylen-len(key))
-                plaintext = vigDecrypt(fullkey, ctext)
+                plaintext = vigDecrypt(fullkey, ciphertext)
                 score = 0
-                for j in range(0,len(ctext), keylen):
+                for j in range(0,len(ciphertext), keylen):
                     score += qgram.score(plaintext[j:j+len(key)])
                 next_rec.add((score, key, plaintext[:30]))
         bestlist = next_rec
         next_rec = best(size)
 
     bestkey = bestlist[0][1]
-    pt = vigDecrypt(bestkey, ctext)
-    bestscore = qgram.score(pt)
+    plaintext = vigDecrypt(bestkey, ciphertext)
+    bestscore = qgram.score(plaintext)
 
     for i in range(size):
-        pt = vigDecrypt(bestlist[i][1], ctext)
-        score = qgram.score(pt)
+        plaintext = vigDecrypt(bestlist[i][1], ciphertext)
+        score = qgram.score(plaintext)
         if score > bestscore:
             bestkey = bestlist[i][1]
             bestscore = score 
 
-    print round(bestscore, 2), 'Vigenere Key Length of', keylen, ':"' + bestkey + '",' , vigDecrypt(bestkey, ctext)
+    print round(bestscore, 2), 'Vigenere Key Length of', keylen, ':"' + bestkey + '",' , vigDecrypt(bestkey, ciphertext)
 
