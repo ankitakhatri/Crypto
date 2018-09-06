@@ -104,9 +104,10 @@ for keylen in range(3, 11):
 
     #make an empty list with specified size
     bestlist = best(size)
-
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    
     #try all the permutations of size keylen of the alphabet
-    for i in permutations ('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 3):
+    for i in permutations (alphabet, keylen):
 
         #try all the combinations of key in the permutation, get the score
         key = ''.join(i) + 'A'*(keylen-len(i))
@@ -118,22 +119,6 @@ for keylen in range(3, 11):
             score += qgram.score(plaintext[j:j+3])
         bestlist.add((score,''.join(i),plaintext))
 
-    #create a backup list of next best options
-    nextbest = best(size)
-
-    #iterate through 0 to keylen-3
-    for i in range(keylen-3):
-        for k in range(size):
-            for char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-                key = (bestlist[k][1] + char).lower()
-                fullkey = key + 'A'*(keylen-len(key))
-                plaintext = vigDecrypt(fullkey, ciphertext)
-                score = 0
-                for j in range(0,len(ciphertext), keylen):
-                    score += qgram.score(plaintext[j:j+len(key)])
-                nextbest.add((score, key.lower(), plaintext))
-        bestlist = nextbest
-        nextbest = best(size)
 
     bestkey = bestlist[0][1].lower()
     plaintext = vigDecrypt(bestkey, ciphertext)
