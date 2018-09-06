@@ -91,7 +91,7 @@ class best(object):
 qgram = ngram_score('quadgrams.txt')
 
 #get encrypted text using encrypt method
-ciphertext = vigEncrypt('hello world', 'pizza')
+ciphertext = vigEncrypt('hello world', 'key')
 
 #print the cipher text
 print (ciphertext)
@@ -102,34 +102,40 @@ size = 50
 #checking for key lengths of 3, 4, 5, 6, 7, 8, 9, and 10
 for keylen in range(3, 11):
 
+    #make an empty list with specified size
     bestlist = best(size)
 
+    #try all the permutations of size keylen of the alphabet
     for i in permutations ('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 3):
 
+        #try all the combinations of key in the permutation, get the score
         key = ''.join(i) + 'A'*(keylen-len(i))
         plaintext = vigDecrypt(key, ciphertext)
         score = 0
 
+        #calculate score and add to best list accordingly
         for j in range(0,len(ciphertext), keylen):
             score += qgram.score(plaintext[j:j+3])
-        bestlist.add((score,''.join(i),plaintext[:30]))
+        bestlist.add((score,''.join(i),plaintext))
 
-    next_rec = best(size)
+    #create a backup list of next best options
+    nextbest = best(size)
 
-    for i in range(0, keylen-3):
-        for k in xrange(size):
-            for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-                key = bestlist[k][1] + c
+    #iterate through 0 to keylen-3
+    for i in range(keylen-3):
+        for k in range(size):
+            for char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
+                key = (bestlist[k][1] + char).lower()
                 fullkey = key + 'A'*(keylen-len(key))
                 plaintext = vigDecrypt(fullkey, ciphertext)
                 score = 0
                 for j in range(0,len(ciphertext), keylen):
                     score += qgram.score(plaintext[j:j+len(key)])
-                next_rec.add((score, key, plaintext[:30]))
-        bestlist = next_rec
-        next_rec = best(size)
+                nextbest.add((score, key.lower(), plaintext))
+        bestlist = nextbest
+        nextbest = best(size)
 
-    bestkey = bestlist[0][1]
+    bestkey = bestlist[0][1].lower()
     plaintext = vigDecrypt(bestkey, ciphertext)
     bestscore = qgram.score(plaintext)
 
@@ -137,8 +143,8 @@ for keylen in range(3, 11):
         plaintext = vigDecrypt(bestlist[i][1], ciphertext)
         score = qgram.score(plaintext)
         if score > bestscore:
-            bestkey = bestlist[i][1]
-            bestscore = score 
+            bestkey = bestlist[i][1].lower()
+            bestscore = score
 
-    print round(bestscore, 2), 'Vigenere Key Length of', keylen, ':"' + bestkey + '",' , vigDecrypt(bestkey, ciphertext)
+    print round(bestscore, 2), 'Vigenere Key Length of', keylen, ':"' + bestkey.lower() + '",' , vigDecrypt(bestkey.lower(), ciphertext)
 
