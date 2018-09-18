@@ -2,6 +2,7 @@ README
 
 Author: Ankita Khatri
 Class: Cryptography
+Python Version: python 2.7 (Mac Default)
 
 Description: This homework contains a method to break the ceasar cipher with brute force, a working version of the n-gram provided by the professor, and a class that analyzes possible keys for the vigenere cipher.
 
@@ -17,7 +18,10 @@ Breaking vigenere cipher:
   Collects the lowest scores (better fitness, more common in english language) and tries to guess closest key of each length.
   Prints best key in each length category.
  
-Run all python files in terminal.
+Run all python files in terminal.:
+
+Example: python ceasar_break.py
+python break_vigenere.py
 
 Sources: http://practicalcryptography.com/media/cryptanalysis/files/ngram_score_1.py
 http://practicalcryptography.com/cryptanalysis/text-characterisation/quadgrams/#a-python-implementation
