@@ -6,6 +6,7 @@
  - Some starter code to implement this design
  - Ideas on how to generate and store keys, found code for base58 encoding, list of other functions I may implement
  
+ *Edit from Wednesday morning's class-- we are all going to be generating RSA public/private key pairs*
  1. Make public/private keys
    1. Research
       1. Generating public and private keys, public keys are derived from private keys
