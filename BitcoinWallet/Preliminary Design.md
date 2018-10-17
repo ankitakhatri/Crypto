@@ -9,7 +9,7 @@
    2. Professor’s suggestion: 
       1. Private keys are just a U Random within a certain size (mod the order of the curve) 
       -  This isn't very secure, RNG's in python use the same seeds
-      -  To make it more cryptographically secure, use the python RNG that's specifically for cryptography (import secrets module) 
+      -  To make it more cryptographically secure, use the python RNG that's specifically for cryptography (import secrets module, available in python 3.6 and newer) 
       2. Public key is just equal to the private key * generator for the curve
       3. Have a class for public and private key
 2. Wallet class
