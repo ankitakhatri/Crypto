@@ -1,10 +1,10 @@
 ﻿
  Preliminary Design for Bitcoin Wallet based on class discussion
  
-  What I have so far:
- -Research done on how I want to set up the wallet
- -Some starter code to implement this design
- -Ideas on how to generate and store keys, found code for base58 encoding, list of other functions I may implement
+   What I have so far:
+ - Research done on how I want to set up the wallet
+ - Some starter code to implement this design
+ - Ideas on how to generate and store keys, found code for base58 encoding, list of other functions I may implement
  
  1. Make public/private keys
    1. Research
