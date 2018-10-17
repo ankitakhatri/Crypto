@@ -1,6 +1,11 @@
 ﻿
  Preliminary Design for Bitcoin Wallet based on class discussion
  
+  What I have so far:
+ -Research done on how I want to set up the wallet
+ -Some starter code to implement this design
+ -Ideas on how to generate and store keys, found code for base58 encoding, list of other functions I may implement
+ 
  1. Make public/private keys
    1. Research
       1. Generating public and private keys, public keys are derived from private keys
@@ -32,3 +37,8 @@
   Sources: 
 - https://medium.freecodecamp.org/how-to-generate-your-very-own-bitcoin-private-key-7ad0f4936e6c
 - https://medium.com/coinmonks/private-and-public-key-cryptography-explained-simply-4c374d371736
+- https://bitcoin.stackexchange.com/questions/75677/python-bitcoinlib-create-private-keys-public-keys-and-addresses-how-to-do-i
+- https://en.bitcoin.it/wiki/Base58Check_encoding
+- https://en.wikipedia.org/wiki/Base58
+- https://en.bitcoinwiki.org/wiki/Base58
+- https://github.com/bitcoin/bitcoin/blob/master/src/base58.h
