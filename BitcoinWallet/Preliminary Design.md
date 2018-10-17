@@ -29,6 +29,6 @@
          3. Pay-to-pubkey-hash (p2pkh): payload is RIPEMD160(SHA256(ECDSA_publicKey)) where ECDSA_publicKey is a public key the wallet knows the private key for; version 0x00 (these addresses begin with the digit '1')
          4. Create a wallet directory, ssh file, persistence to store and move keys
          
-Sources: 
--https://medium.freecodecamp.org/how-to-generate-your-very-own-bitcoin-private-key-7ad0f4936e6c
--https://medium.com/coinmonks/private-and-public-key-cryptography-explained-simply-4c374d371736
+  Sources: 
+- https://medium.freecodecamp.org/how-to-generate-your-very-own-bitcoin-private-key-7ad0f4936e6c
+- https://medium.com/coinmonks/private-and-public-key-cryptography-explained-simply-4c374d371736
