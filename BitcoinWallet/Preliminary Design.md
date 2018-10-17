@@ -1,4 +1,7 @@
-﻿1. Make public/private keys
+﻿
+ Preliminary Design for Bitcoin Wallet based on class discussion
+ 
+ 1. Make public/private keys
    1. Research
       1. Generating public and private keys, public keys are derived from private keys
       2. Public keys are generated to show ownership of a Bitcoin
