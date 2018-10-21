@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: cryptolib
+Version: 0.0.2
+Summary: The CryptoLib module provides a set of cryptographic functions in Python
+Home-page: https://cryptolib-python.io
+Author: Nguyen Truong Long
+Author-email: contact@nguyentruonglong.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+The CryptoLib module provides a set of cryptographic functions in Python
+
+
