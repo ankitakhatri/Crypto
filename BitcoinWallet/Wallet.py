@@ -1,25 +1,17 @@
-from Crypto.PublicKey import RSA
+'''
+Simple RSA key implementation from scratch, using prime numbers
+'''
 
-def newKeyPair():
-    #function to generate a new key pair
-    key = RSA.generate(1024)
-    f = open("private.pem", "wb")
-    f.write(key.exportKey('PEM'))
-    f.close()
+import random
 
-    pubkey = key.publickey()
-    f = open("public.pem", "wb")
-    f.write(pubkey.exportKey('OpenSSH'))
-    f.close()
+'''
+First step is to implement Euclid's algorithm to determine the greatest common divisor between two numbers
+'''
 
-# def list():
-# 	#function to list all the public private key pairs
-# 	#print them by name
-#
-# def display(key):
-# 	#function to display a specific key
-# 	#planning to use QR code
-#
-# def base58Check():
-# 	#function to encode a base58 address
-# 	#code for this: https://github.com/bitcoin/bitcoin/blob/master/src/base58.h
+def euclid (x, y):
+    while y != x:
+        x, y = y, x % y
+    return x
+
+
+
