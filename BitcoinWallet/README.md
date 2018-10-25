@@ -25,6 +25,6 @@
   3. Multiple p and q (I store this as n and use it as the modulus later for encryption)
   4. Calculate phi= (p-1) * (q-1), choose a number between 1 and phi, and implement Euclid's gcd algorithm to generate a public key
   5. To generate the private key, find the modular multiplicative inverse of the public key and n (the modulus)
-  6. Encrypt using pow(x, y, mod) as pow(public, private, n)
+  6. Encrypt using pow(x, y, mod):  pow(public, private, n) and pow(private, public, n) and concatenating them to form a longer encrypted key that is more secure
       
      
