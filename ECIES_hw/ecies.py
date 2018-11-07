@@ -1,5 +1,4 @@
 from Crypto.PublicKey import ECC
-import json
 from base64 import b64encode
 from base64 import b64decode
 from Crypto.Cipher import AES
