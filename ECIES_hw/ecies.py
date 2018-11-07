@@ -33,16 +33,28 @@ ct = b64encode(ct_bytes).decode('utf-8')
 #decode iv and ct
 old_iv = b64decode(iv)
 old_ct = b64decode(ct)
-#initializecipher and decrypt ciphertext to plaintext
+#initialize cipher and decrypt ciphertext to plaintext
 cipher = AES.new(key, AES.MODE_CFB, iv = old_iv)
 pt = cipher.decrypt(old_ct)
 
+#write to file ouput.txt
+f = open("output.txt", "w")
+
 if mode == 'e':
 
-    #encrypted text using AES
+    #print encrypted text if mode is 'e'
+    print("Encrypting file...")
+    print("Encrypted text: ")
     print(ct)
+    f.write("Encrypted Text: ")
+    f.write(str(ct))
 
 if mode == 'd':
 
+    #print decrypted text is mode is 'd'
+    print("Decrypting file...")
+    print("Decrypted text: ")
     #print decrypted text
     print(pt)
+    f.write("Decrypted Text: ")
+    f.write(str(pt))
