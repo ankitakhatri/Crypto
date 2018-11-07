@@ -3,48 +3,46 @@ import json
 from base64 import b64encode
 from base64 import b64decode
 from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
+import sys
 
+#command line functionality
+#command line: python ./ecies.py e/d input.txt
+
+mode = sys.argv[1]
+file = sys.argv[2]
 
 #get input from file as a string
-with open('input.txt', 'r') as myfile:
+with open(file, 'r') as myfile:
     input = myfile.read().replace('\n', ' ')
 
-#print (input)
-#print()
-
+#generate key using ECC library
 key1 = ECC.generate(curve='P-256')
 
-#print(key1.export_key(format='PEM'))
-#print(key1)
-print()
-
-publickey = key1.public_key().export_key(format='PEM')
-
-#pub = str(key1.public_key())
-#publickey = (pub.split(', '))
-#print(publickey[1], publickey[2])
-# print(publickey)
-# print()
-# print (key1.d)
-# print()
-
-#encrypt using AES
 data = bytes(input, 'utf-8')
+
+#get private key in byte form
 key = bytes(str(key1.d), 'utf-8')
 key = key[:16]
+
+#initialize cipher and encrypt data (plaintext) to ciphertext
 cipher = AES.new(key, AES.MODE_CFB)
 ct_bytes = cipher.encrypt(data)
 iv = b64encode(cipher.iv).decode('utf-8')
 ct = b64encode(ct_bytes).decode('utf-8')
-result = json.dumps({'iv':iv, 'ciphertext':ct})
 
-print(result)
+#decode iv and ct
+old_iv = b64decode(iv)
+old_ct = b64decode(ct)
+#initializecipher and decrypt ciphertext to plaintext
+cipher = AES.new(key, AES.MODE_CFB, iv = old_iv)
+pt = cipher.decrypt(old_ct)
 
-#decrypt using AES
-json_input = input
-b64 = json.loads(json_input)
-nonce = b64decode(b64['nonce'])
-ct = b64decode(b64['ciphertext'])
-cipher = AES.new(key, AES.MODE_CFB, iv=iv)
-pt = cipher.decrypt(ct)
+if mode == 'e':
+
+    #encrypted text using AES
+    print(ct)
+
+if mode == 'd':
+
+    #print decrypted text
+    print(pt)
