@@ -25,3 +25,21 @@
 ###### Park Miller
 - Also called the Lehmer random number generator
 - It is a type of linear congruential generator (LCG) that operates in multiplicative groups of integers modulo n
+
+USAGE:
+- I have set random seeds for all the 3 PRNG's, can be tested using different variations of numbers
+To run: 
+```python ./xorshift.py```
+```python ./mersennetwister.py```
+```python ./parkmiller.py```
+
+Sources:
+- https://en.wikipedia.org/wiki/Xorshift
+- https://en.wikipedia.org/wiki/Lehmer_random_number_generator
+- https://en.wikipedia.org/wiki/Mersenne_Twister
+- https://docs.python.org/2/library/random.html
+- http://code.activestate.com/recipes/578056-mersenne-twister/
+- https://github.com/pineapplemachine/pyxorshift
+- https://github.com/sindresorhus/park-miller
+- http://www.crypto-it.net/eng/theory/pseudorandom-generator.html
+- https://www.geeksforgeeks.org/pseudo-random-number-generator-prng/
