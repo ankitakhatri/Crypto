@@ -2,10 +2,9 @@ import math
 import time
 
 
-class MyRNG:
+class ParkMiller:
 
     def __init__(self, low=0, high=0):
-        #     The constructor initializes data members "m_min" and "m_max"
         if (low < 2):
             low = 2
         if (high < 2):
@@ -15,13 +14,9 @@ class MyRNG:
         self.m_seed = time.time()
 
     def Seed(self, seed):
-        #  Seed the generator with 'seed'
         self.m_seed = seed
 
     def Next(self):
-        #     Return the next random number using an algorithm based on the
-        #        Park & Miller paper "RANDOM NUMBER GENERATORS: GOOD ONES ARE
-        #        HARD TO FIND"
         a = self.m_min
         m = self.m_max
         q = math.trunc(m / a)
@@ -37,8 +32,6 @@ class MyRNG:
         self.m_seed = x
         self.m_seed %= m
 
-        # ensure that the random number is not less
-        # than the minimum number within the user specified range
         if (self.m_seed < a):
             self.m_seed += a
 
@@ -46,13 +39,11 @@ class MyRNG:
 
 
 def test():
-    #  Simple test function to see if the functionality of my class
-    #     is there and works
 
-    random = MyRNG(7, 1987)
-    random.Seed(806189064)
-    for x in range(15):
-        print("%d,  " % (random.Next()), end="")
+    random = ParkMiller(10, 13901309)
+    random.Seed(2308094)
+    for x in range(10):
+        print("%d  " % random.Next())
 
 
 if __name__ == '__main__':

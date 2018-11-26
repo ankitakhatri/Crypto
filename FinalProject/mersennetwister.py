@@ -1,19 +1,18 @@
 class mersenne_rng(object):
     def __init__(self, seed = 5498):
         self.state = [0]*624
-        self.f = 1812433253
-        self.m = 397
-        self.u = 11
-        self.s = 7
+        self.f = 982798732
+        self.m = 3983
+        self.u = 32
+        self.s = 9
         self.b = 0x9D2C5680
-        self.t = 15
+        self.t = 23
         self.c = 0xEFC60000
-        self.l = 18
-        self.index = 624
-        self.lower_mask = (1<<31)-1
-        self.upper_mask = 1<<31
+        self.l = 29
+        self.index = 439
+        self.lower_mask = (1<<20)-1
+        self.upper_mask = 1<<20
 
-        # update state
         self.state[0] = seed
         for i in range(1,624):
             self.state[i] = self.int_32(self.f*(self.state[i-1]^(self.state[i-1]>>30)) + i)

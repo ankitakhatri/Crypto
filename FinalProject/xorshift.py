@@ -5,16 +5,12 @@ class XORShiftRNG:
         millis = int(round(time.time() * 1000))
         self.__init__(millis)
 
-
-    def __init__(self, seed):
-        self = seed
-
-    def nextInt(self, max):
+    def nextInt(self):
         self ^= (self << 1)
         print(self)
-        self ^= (self << 1)
+        self ^= (self << 10)
         print(self)
-        self ^= (self << 1)
+        self ^= (self >> 20)
         print(self)
 
-    nextInt(4098450349, 1)
+    nextInt(49302940)
