@@ -1,5 +1,5 @@
 class mersenne_rng(object):
-    def __init__(self, seed = 5489):
+    def __init__(self, seed = 5498):
         self.state = [0]*624
         self.f = 1812433253
         self.m = 397

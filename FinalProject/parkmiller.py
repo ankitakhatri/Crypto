@@ -1,39 +1,59 @@
-def PM_hash(pwd, length=32):
-    if not len(pwd):
-        print("String may not be empty")
-        return 0
-
-    def Park_Miller(seed):
-        last = seed
-        while 1:
-            last = (16807 * last % 2147483647)
-            yield last % 65535
-
-    print("\nString is: {0}").format(pwd)
-    pwd += '0'
-    seed = 0
-
-    print('Generating seed...')
-    for i in range(len(pwd)):
-        seed += ord(pwd[i]) * (257 ** i)
-
-    print('Generated seed: {0}').format(seed)
-
-    hat = Park_Miller(seed)
-    result = ''
-    # print('Generated seed: {0}').format(hat.next())
-    print('Generating hash...')
-    for i in range(length):
-        result += hex((ord(pwd[i % len(pwd)]) + hat.next()) % 15)[2:-1]
-        print(': {0}').format(hat.next())
-        print('=: {0}').format((ord(pwd[i % len(pwd)]) + hat.next()) % 15)
-
-    return result
+import math
+import time
 
 
-while 1:
-    print(u"Input password or ENTER for exit")
-    string = input()
-    if not string:
-        break
-    print("Hash generated: {0}").format(PM_hash(string))
+class MyRNG:
+
+    def __init__(self, low=0, high=0):
+        #     The constructor initializes data members "m_min" and "m_max"
+        if (low < 2):
+            low = 2
+        if (high < 2):
+            high = 9223372036854775807
+        self.m_min = low
+        self.m_max = high
+        self.m_seed = time.time()
+
+    def Seed(self, seed):
+        #  Seed the generator with 'seed'
+        self.m_seed = seed
+
+    def Next(self):
+        #     Return the next random number using an algorithm based on the
+        #        Park & Miller paper "RANDOM NUMBER GENERATORS: GOOD ONES ARE
+        #        HARD TO FIND"
+        a = self.m_min
+        m = self.m_max
+        q = math.trunc(m / a)
+        r = m % a
+
+        hi = self.m_seed / q
+        lo = self.m_seed % q
+        x = (a * lo) - (r * hi)
+
+        if (x < a):
+            x += a
+
+        self.m_seed = x
+        self.m_seed %= m
+
+        # ensure that the random number is not less
+        # than the minimum number within the user specified range
+        if (self.m_seed < a):
+            self.m_seed += a
+
+        return int(self.m_seed)
+
+
+def test():
+    #  Simple test function to see if the functionality of my class
+    #     is there and works
+
+    random = MyRNG(7, 1987)
+    random.Seed(806189064)
+    for x in range(15):
+        print("%d,  " % (random.Next()), end="")
+
+
+if __name__ == '__main__':
+    test()
