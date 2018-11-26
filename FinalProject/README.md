@@ -8,7 +8,7 @@
 2. Deterministic: should be able to reproduce the same numbers with the given starting point/seed
 3. Periodic: the sequence of numbers will eventually repeat itself, but nowadays the periods are so long that this is rarely a cause of concern
 
-Use in Cryptography:
+###### Use in Cryptography:
 - We can use PRNG’s to generate keys and encrypt data in cryptography. Many ciphers (like the block cipher) utilize random number generators to encrypt data. Some commonly used cryptographic PRNG’s are the xorshift, Mersenne-Twister, and u-rand(based off the Park-Miller PRNG). 
 
 ## Pseudo-Random Number Generators in this project:
