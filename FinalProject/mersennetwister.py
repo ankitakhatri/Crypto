@@ -1,3 +1,8 @@
+'''
+Mersenne-Twister PRNG implementation
+https://en.wikipedia.org/wiki/Mersenne_Twister
+'''
+
 class mersenne_rng(object):
     def __init__(self, seed = 5498):
         self.state = [0]*624

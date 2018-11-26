@@ -1,6 +1,10 @@
+'''
+PRNG based off Lehmer/Park-Miller algorithm
+https://en.wikipedia.org/wiki/Lehmer_random_number_generator
+'''
+
 import math
 import time
-
 
 class ParkMiller:
 

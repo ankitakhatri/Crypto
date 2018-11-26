@@ -1,3 +1,7 @@
+'''
+PRNG based of XORshift algorithm.
+https://en.wikipedia.org/wiki/Xorshift
+'''
 import time
 
 class XORShiftRNG:
@@ -6,11 +10,11 @@ class XORShiftRNG:
         self.__init__(millis)
 
     def nextInt(self):
-        self ^= (self << 1)
+        self ^= (self << 13)
         print(self)
-        self ^= (self << 10)
+        self ^= (self >> 7)
         print(self)
-        self ^= (self >> 20)
+        self ^= (self >> 5)
         print(self)
 
     nextInt(49302940)
